@@ -4,7 +4,7 @@ import PySimpleGUI as sg                                                        
 import sys, gc                                                                                                         # imports system, garbage collction
 import pyperclip
 import ctypes
-ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)                                          # removes Python black console window
 
 programname = "Case Converter"                                                                                         # program name for display window                                                                                                    
 version = "1.0.1"                                                                                                      # version for display window
@@ -34,9 +34,9 @@ while True:
     event, values = window.read()                                                                                      # gets user input
 
     try:
-        text_input = values[0]                                                                                             # assigns text input window to a variable
-    except TypeError:
-        text_input = ''
+        text_input = values[0]                                                                                         # assigns text input window to a variable
+    except TypeError:                                                                                                  # if there's a TypeError it's because nothing was input
+        text_input = ''                                                                                                # so the program makes a string with nothing in it
         
     if event == 'Quit':                                                                                                # quits the program if quit button selected
         sys.exit()
@@ -56,19 +56,15 @@ while True:
         text_input = text_input.upper()
         
 
-    if event == 'Copy to clipboard':
+    if event == 'Copy to clipboard':                                                                                   # copies text to clipboard
         try:
             pyperclip.copy(text_input2)
-        except:
-            continue
+        except:                                                                                                        # if this doesn't work it maybe because there's no text
+            continue                                                                                                   # tells the program to proceed anyway and not crash
         continue
 
     window['chuu'].update(text_input)                                                                                  # updates the window with the text input
     text_input2 = text_input                                                       
-    
-
-        
-
     
 
         
