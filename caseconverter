@@ -6,7 +6,7 @@ import pyperclip                                                                
 import ctypes
 ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)                                          # removes Python black console window
 
-programname = "Case Converter"                                                                                         # program name for display window                                                                                                    
+programname = "Case Converter"                                                                                         # program name for display window 
 version = "1.0.1"                                                                                                      # version for display window
 
 sg.SetOptions(background_color='#fde5ee',                                                                              # sets default GUI colours
