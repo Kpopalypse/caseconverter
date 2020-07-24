@@ -1,0 +1,76 @@
+print ('Please wait...')
+import PySimpleGUI                                                                                                     # imports GUI
+import PySimpleGUI as sg                                                                                               # imports GUI
+import sys, gc                                                                                                         # imports system, garbage collction
+import pyperclip
+import ctypes
+ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)
+
+programname = "Case Converter"                                                                                         # program name for display window                                                                                                    
+version = "1.0.1"                                                                                                      # version for display window
+
+sg.SetOptions(background_color='#fde5ee',                                                                              # sets default GUI colours
+           text_element_background_color='#fde5ee',      
+           element_background_color='#9FB8AD',      
+           scrollbar_color=None,
+           input_elements_background_color='#DFE5FF',      
+           progress_meter_color = ('#768FFF', 'blue'),      
+           button_color=('black','#fd7aea'))
+
+layout = [[sg.Output(size=(125,30), key = 'chuu')],
+              [sg.Text('Paste your text below and choose an option')],                                                 # defintes window layout
+                     [sg.InputText()],      
+                     [sg.Button('lower case'),sg.Button('Sentence case'),
+                      sg.Button('Title Case'),sg.Button('ALL CAPS'), sg.Button('Copy to clipboard'), sg.Quit(),]]      
+
+window = sg.Window(programname + ' - ' + version, layout)                                                              # shows user the window 
+
+while True:
+    
+    gc.collect()                                                                                                       # collects garbage
+
+
+
+    event, values = window.read()                                                                                      # gets user input
+
+    try:
+        text_input = values[0]                                                                                             # assigns text input window to a variable
+    except TypeError:
+        text_input = ''
+        
+    if event == 'Quit':                                                                                                # quits the program if quit button selected
+        sys.exit()
+
+    if event == 'lower case':                                                                                          # converts to lowercase
+        text_input = text_input.lower()
+    
+    if event == 'Sentence case':                                                                                       # converts to sentence case
+        text_input = text_input.capitalize()                                                                           # note this doesn't work if there are double-spaced periods
+        text_input = '. '.join(i.capitalize() for i in text_input.split('. '))                                         
+
+        
+    if event == 'Title Case':                                                                                          # converts to title case
+        text_input = text_input.title()
+
+    if event == 'ALL CAPS':                                                                                            # converts to upper case
+        text_input = text_input.upper()
+        
+
+    if event == 'Copy to clipboard':
+        try:
+            pyperclip.copy(text_input2)
+        except:
+            continue
+        continue
+
+    window['chuu'].update(text_input)                                                                                  # updates the window with the text input
+    text_input2 = text_input                                                       
+    
+
+        
+
+    
+
+        
+
+    
