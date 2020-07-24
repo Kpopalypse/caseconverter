@@ -2,7 +2,7 @@ print ('Please wait...')
 import PySimpleGUI                                                                                                     # imports GUI
 import PySimpleGUI as sg                                                                                               # imports GUI
 import sys, gc                                                                                                         # imports system, garbage collction
-import pyperclip
+import pyperclip                                                                                                       # imports copy/paste
 import ctypes
 ctypes.windll.user32.ShowWindow(ctypes.windll.kernel32.GetConsoleWindow(), 0)                                          # removes Python black console window
 
@@ -29,8 +29,6 @@ while True:
     
     gc.collect()                                                                                                       # collects garbage
 
-
-
     event, values = window.read()                                                                                      # gets user input
 
     try:
@@ -55,7 +53,6 @@ while True:
     if event == 'ALL CAPS':                                                                                            # converts to upper case
         text_input = text_input.upper()
         
-
     if event == 'Copy to clipboard':                                                                                   # copies text to clipboard
         try:
             pyperclip.copy(text_input2)
@@ -64,7 +61,6 @@ while True:
         continue
 
     window['chuu'].update(text_input)                                                                                  # updates the window with the text input
-    text_input2 = text_input                                                       
     
 
         
